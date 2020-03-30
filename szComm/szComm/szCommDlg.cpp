@@ -156,11 +156,18 @@ HCURSOR CszCommDlg::OnQueryDragIcon()
 
 #include "SerialPort.h"
 #include "TimerCounter.hpp"
+#include "Btsdk_Macro.h"
+#include "Btsdk_Stru.h"
+#include "Btsdk_API.h"
+#include "Btsdk_ui.h"
 CSerialPort sp;
 TimerCounter tc;
+#pragma comment(lib,"BsSDK.lib")
 void CszCommDlg::OnBnClickedButton1()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	//bt part
+	Btsdk_Init();
 
 	//Serial port part
 	tc.Start();
