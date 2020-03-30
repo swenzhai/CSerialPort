@@ -154,9 +154,17 @@ HCURSOR CszCommDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
-
-
+#include "SerialPort.h"
+CSerialPort sp;
 void CszCommDlg::OnBnClickedButton1()
 {
 	// TODO: 在此添加控件通知处理程序代码
+	int port = 1;	//1 to 4
+	int r = sp.InitPort(this, port, 115200);
+	r = sp.StartMonitoring();
+	if (!r) {
+		sp.StopMonitoring();
+		return;
+	}
+
 }
