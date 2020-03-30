@@ -155,10 +155,15 @@ HCURSOR CszCommDlg::OnQueryDragIcon()
 }
 
 #include "SerialPort.h"
+#include "TimerCounter.hpp"
 CSerialPort sp;
+TimerCounter tc;
 void CszCommDlg::OnBnClickedButton1()
 {
 	// TODO: 在此添加控件通知处理程序代码
+
+	//Serial port part
+	tc.Start();
 	int port = 1;	//1 to 4
 	int r = sp.InitPort(this, port, 115200);
 	r = sp.StartMonitoring();
@@ -166,5 +171,5 @@ void CszCommDlg::OnBnClickedButton1()
 		sp.StopMonitoring();
 		return;
 	}
-
+	tc.Stop();
 }
